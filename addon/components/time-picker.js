@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import moment from 'moment';
 import roundTime from '../utils/round-time';
 import { indexOfOption } from 'ember-power-select/utils/group-utils';
@@ -50,8 +51,12 @@ export default class TimePickerComponent extends Component {
       optionElement.getBoundingClientRect().height/2;
   }
 
+  @action
   scrollToTime(term, select) {
-    let searchString = roundTime(term);
+    if (term.length === 3) {
+      term = term.padStart(4, '0');
+    }
+    let searchString = roundTime(term, this.steps);
     select.actions.highlight(searchString);
     select.actions.scrollTo(searchString);
   }

@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { clickTrigger, selectChoose } from 'ember-power-select/test-support/helpers';
+import { clickTrigger, typeInSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
 module('Integration | Component | time-picker', function(hooks) {
   setupRenderingTest(hooks);
@@ -100,5 +100,69 @@ module('Integration | Component | time-picker', function(hooks) {
     assert.equal(options[0].textContent.trim(), '06:00');
     assert.equal(options[1].textContent.trim(), '06:15');
     assert.equal(options.length, 65);
+  });
+
+  test('it highlights time on search', async function(assert) {
+    await render(hbs`
+      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </TimePicker>
+    `);
+
+    await clickTrigger();
+    await typeInSearch('', '12');
+
+    assert.equal(
+      document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
+      '12:00'
+    );
+  });
+
+  test('it supports search with colons omitted', async function(assert) {
+    await render(hbs`
+      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </TimePicker>
+    `);
+
+    await clickTrigger();
+    await typeInSearch('', '1215');
+
+    assert.equal(
+      document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
+      '12:15'
+    );
+  });
+
+  test('it highlights nearest match', async function(assert) {
+    await render(hbs`
+      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </TimePicker>
+    `);
+
+    await clickTrigger();
+    await typeInSearch('', '1337');
+
+    assert.equal(
+      document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
+      '13:30'
+    );
+  });
+
+  test('it allows leading 0 to be omitted', async function(assert) {
+    await render(hbs`
+      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </TimePicker>
+    `);
+
+    await clickTrigger();
+    await typeInSearch('', '815');
+
+    assert.equal(
+      document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
+      '08:15'
+    );
   });
 });
