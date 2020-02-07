@@ -72,4 +72,33 @@ module('Integration | Component | time-picker', function(hooks) {
 
     await selectChoose('', '14:00');
   });
+
+  test('it adds selected as option', async function(assert) {
+    await render(hbs`
+      <TimePicker @selected="05:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </TimePicker>
+    `);
+
+    await clickTrigger();
+
+    const options = document.querySelectorAll('.ember-power-select-option');
+    assert.equal(document.querySelector('.ember-power-select-trigger').textContent.trim(), '05:00');
+    assert.equal(options.length, 66);
+  });
+
+  test('it does not duplicate selected item', async function(assert) {
+    await render(hbs`
+      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </TimePicker>
+    `);
+
+    await clickTrigger();
+
+    const options = document.querySelectorAll('.ember-power-select-option');
+    assert.equal(options[0].textContent.trim(), '06:00');
+    assert.equal(options[1].textContent.trim(), '06:15');
+    assert.equal(options.length, 65);
+  });
 });

@@ -23,6 +23,9 @@ export default class TimePickerComponent extends Component {
     for (now; now.isSameOrBefore(end); now.add(this.steps, 'minutes')) {
       options.push(now.format('HH:mm'));
     }
+    if (this.args.selected && ! options.includes(this.args.selected)) {
+      options.push(this.args.selected);
+    }
     return options.sort();
   }
 

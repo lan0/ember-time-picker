@@ -7,3 +7,11 @@ selected: {{this.time}}
   as |time|>
   {{time}}
 </TimePicker>
+<br>
+selected will be added to options:
+<TimePicker
+  @selected="06:03"
+  @onChange={{fn (mut this.time)}}
+  as |time|>
+  {{time}}
+</TimePicker>
