@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">Power-select a time</h2>
 
-{{outlet}}
+selected: {{this.time}}
+<TimePicker
+  @selected={{this.time}}
+  @onChange={{fn (mut this.time)}}
+  as |time|>
+  {{time}}
+</TimePicker>
