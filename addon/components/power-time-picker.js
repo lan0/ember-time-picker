@@ -1,22 +1,18 @@
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import Component from '@ember/component';
+import { action, computed } from '@ember/object';
 import moment from 'moment';
 import roundTime from '../utils/round-time';
 import { indexOfOption } from 'ember-power-select/utils/group-utils';
+import templateLayout from '../templates/components/power-time-picker';
+import { layout, tagName } from "@ember-decorators/component";
 
-export default class TimePickerComponent extends Component {
-  get steps() {
-    return this.args.steps || 5;
-  }
+export default @tagName('') @layout(templateLayout) class PowerTimePicker extends Component {
+  selected;
+  steps = 5;
+  minTime = '06:00';
+  maxTime = '22:00';
 
-  get minTime() {
-    return this.args.minTime || '06:00';
-  }
-
-  get maxTime() {
-    return this.args.maxTime || '22:00';
-  }
-
+  @computed('minTime', 'maxTime', 'steps', 'selected')
   get options() {
     let options = [];
     let now = moment(this.minTime, 'HH:mm');
@@ -24,8 +20,8 @@ export default class TimePickerComponent extends Component {
     for (now; now.isSameOrBefore(end); now.add(this.steps, 'minutes')) {
       options.push(now.format('HH:mm'));
     }
-    if (this.args.selected && ! options.includes(this.args.selected)) {
-      options.push(this.args.selected);
+    if (this.selected && ! options.includes(this.selected)) {
+      options.push(this.selected);
     }
     return options.sort();
   }
