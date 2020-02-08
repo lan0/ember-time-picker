@@ -1,4 +1,4 @@
-time-picker
+ember-power-time-picker
 ==============================================================================
 
 [Short description of the addon.]
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install time-picker
+ember install ember-power-time-picker
 ```
 
 

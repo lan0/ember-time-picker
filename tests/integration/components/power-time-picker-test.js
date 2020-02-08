@@ -4,14 +4,14 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { clickTrigger, typeInSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
-module('Integration | Component | time-picker', function(hooks) {
+module('Integration | Component | power-time-picker', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it highlights selected time on open', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="06:30" @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="06:30" @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -30,9 +30,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it can set minute steps', async function(assert) {
     await render(hbs`
-      <TimePicker @steps=15 @selected="12:00" @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @steps=15 @selected="12:00" @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -46,9 +46,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it can set min and max time', async function(assert) {
     await render(hbs`
-      <TimePicker @minTime="12:00" @maxTime="13:00" @selected="12:00" @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @minTime="12:00" @maxTime="13:00" @selected="12:00" @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -65,9 +65,9 @@ module('Integration | Component | time-picker', function(hooks) {
     this.change = time => assert.equal(time, '14:00');
 
     await render(hbs`
-      <TimePicker @selected="12:00" @onChange={{this.change}} as |time|>
+      <PowerTimePicker @selected="12:00" @onChange={{this.change}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await selectChoose('', '14:00');
@@ -75,9 +75,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it adds selected as option', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="05:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="05:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -89,9 +89,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it does not duplicate selected item', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -104,9 +104,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it highlights time on search', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -120,9 +120,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it supports search with colons omitted', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -136,9 +136,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it highlights nearest match', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();
@@ -152,9 +152,9 @@ module('Integration | Component | time-picker', function(hooks) {
 
   test('it allows leading 0 to be omitted', async function(assert) {
     await render(hbs`
-      <TimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
         {{time}}
-      </TimePicker>
+      </PowerTimePicker>
     `);
 
     await clickTrigger();

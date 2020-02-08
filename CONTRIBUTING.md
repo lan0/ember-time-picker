@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd time-picker`
+* `cd ember-power-time-picker`
 * `npm install`
 
 ## Linting

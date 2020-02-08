@@ -1,17 +1,17 @@
 <h2 id="title">Power-select a time</h2>
 
 selected: {{this.time}}
-<TimePicker
+<PowerTimePicker
   @selected={{this.time}}
   @onChange={{fn (mut this.time)}}
   as |time|>
   {{time}}
-</TimePicker>
+</PowerTimePicker>
 <br>
 selected will be added to options:
-<TimePicker
+<PowerTimePicker
   @selected="06:03"
   @onChange={{fn (mut this.time)}}
   as |time|>
   {{time}}
-</TimePicker>
+</PowerTimePicker>
