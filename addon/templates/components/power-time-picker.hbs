@@ -1,11 +1,11 @@
 <PowerSelect
   @afterOptionsComponent={{@afterOptionsComponent}}
-  @allowClear={{@allowClear}}
+  @allowClear={{false}}
   @ariaDescribedBy={{@ariaDescribedBy}}
   @ariaInvalid={{@ariaInvalid}}
   @ariaLabel={{@ariaLabel}}
   @ariaLabelledBy={{@ariaLabelledBy}}
-  @beforeOptionsComponent={{@beforeOptionsComponent}}
+  @beforeOptionsComponent={{null}}
   @buildSelection={{@buildSelection}}
   @calculatePosition={{@calculatePosition}}
   @class={{@class}}
@@ -49,7 +49,7 @@
   @selectedItemComponent={{@selectedItemComponent}}
   @tabindex={{@tabindex}}
   @triggerClass={{@triggerClass}}
-  @triggerComponent={{@triggerComponent}}
+  @triggerComponent={{this.triggerComponent}}
   @triggerId={{@triggerId}}
   @triggerRole={{@triggerRole}}
   @typeAheadMatcher={{@typeAheadMatcher}}

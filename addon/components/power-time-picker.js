@@ -11,6 +11,7 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
   steps = 5;
   minTime = '06:00';
   maxTime = '22:00';
+  triggerComponent = 'power-time-picker/trigger';
 
   @computed('minTime', 'maxTime', 'steps', 'selected')
   get options() {

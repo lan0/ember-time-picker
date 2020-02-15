@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, triggerKeyEvent } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { clickTrigger, typeInSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
@@ -83,7 +83,7 @@ module('Integration | Component | power-time-picker', function(hooks) {
     await clickTrigger();
 
     const options = document.querySelectorAll('.ember-power-select-option');
-    assert.equal(document.querySelector('.ember-power-select-trigger').textContent.trim(), '05:00');
+    assert.equal(document.querySelector('.ember-power-select-trigger input').value, '05:00');
     assert.equal(options.length, 66);
   });
 
@@ -180,5 +180,42 @@ module('Integration | Component | power-time-picker', function(hooks) {
       document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
       '10:45'
     );
+  });
+
+  test('it fills out search input with selected value', async function(assert) {
+    await render(hbs`
+      <PowerTimePicker @selected={{this.time}} @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await selectChoose('', '14:00');
+    assert.notOk(document.querySelector('.ember-power-select-dropdown'), 'the component is closed');
+    assert.equal(document.querySelector('.ember-power-select-search-input').value, '14:00', 'the input contains the selected option');
+  });
+
+  test('it resets search value on close', async function(assert) {
+    await render(hbs`
+      <PowerTimePicker @selected={{time}} @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await typeInSearch('', '14:00');
+    await triggerKeyEvent('.ember-power-select-search-input', 'keydown', 'Escape');
+    assert.notOk(document.querySelector('.ember-power-select-dropdown'), 'the component is closed');
+    assert.equal(document.querySelector('.ember-power-select-search-input').value, '', 'the search gets reset');
+  });
+
+  test('it resets search input value on select', async function(assert) {
+    await render(hbs`
+      <PowerTimePicker @selected={{time}} @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await typeInSearch('', '1400');
+    await selectChoose('', '15:00');
+    assert.equal(document.querySelector('.ember-power-select-search-input').value, '15:00', 'the input gets set to selected value');
   });
 });
