@@ -165,4 +165,20 @@ module('Integration | Component | power-time-picker', function(hooks) {
       '08:15'
     );
   });
+
+  test('it allows last number to be omitted', async function(assert) {
+    await render(hbs`
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await clickTrigger();
+
+    await typeInSearch('', '104');
+    assert.equal(
+      document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
+      '10:45'
+    );
+  });
 });
