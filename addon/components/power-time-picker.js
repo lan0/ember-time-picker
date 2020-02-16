@@ -57,10 +57,10 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
   @action
   scrollToTime(term, select) {
     if (term.length === 3) {
-      if (term.substr(0, 1) !== '1' && term.substr(0, 1) !== '2') {
-        term = term.padStart(4, '0');
-      } else {
+      if (term.substr(0, 1) === '0' || term.substr(0, 1) === '1' || term.substr(0, 1) === '2') {
         term = term.padEnd(4, '0');
+      } else {
+        term = term.padStart(4, '0');
       }
     }
     let searchString = roundTime(term, this.steps);

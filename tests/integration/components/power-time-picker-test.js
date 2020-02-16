@@ -188,6 +188,20 @@ module('Integration | Component | power-time-picker', function(hooks) {
     );
   });
 
+  test('it allows leading zero in fuzzy search', async function(assert) {
+    await render(hbs`
+      <PowerTimePicker @selected="06:00" @steps=15 @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await fillIn('.ember-power-select-search-input', '073');
+    assert.equal(
+      document.querySelector('.ember-power-select-option[aria-current=true]').textContent.trim(),
+      '07:30'
+    );
+  });
+
   test('it fills out search input with selected value', async function(assert) {
     await render(hbs`
       <PowerTimePicker @selected={{this.time}} @steps=15 @onChange={{fn (mut time)}} as |time|>
