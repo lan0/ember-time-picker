@@ -5,6 +5,7 @@ import roundTime from '../utils/round-time';
 import { indexOfOption } from 'ember-power-select/utils/group-utils';
 import templateLayout from '../templates/components/power-time-picker';
 import { layout, tagName } from "@ember-decorators/component";
+import { scheduler } from 'ember-raf-scheduler';
 
 export default @tagName('') @layout(templateLayout) class PowerTimePicker extends Component {
   selected;
@@ -12,6 +13,7 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
   minTime = '06:00';
   maxTime = '22:00';
   triggerComponent = 'power-time-picker/trigger';
+  optionsComponent = 'power-time-picker/options';
 
   @computed('minTime', 'maxTime', 'steps', 'selected')
   get options() {
@@ -38,14 +40,18 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
       return;
     }
     let optionElement = optionsList.querySelectorAll('[data-option-index]').item(index);
-    if (!optionElement) {
-      return;
+    let optionHeight = 28;
+    let optionOffset = index * optionHeight;
+    if (optionElement) {
+      optionOffset = optionElement.offsetTop;
+      optionHeight = optionElement.getBoundingClientRect().height;
     }
     // ensure element gets centered in options list
-    let optionTopScroll = optionElement.offsetTop - optionsList.offsetTop;
-    optionsList.scrollTop = optionTopScroll -
-      optionsList.getBoundingClientRect().height/2 +
-      optionElement.getBoundingClientRect().height/2;
+    scheduler.schedule('affect', () => {
+      optionsList.scrollTop = optionOffset -
+        optionsList.getBoundingClientRect().height/2 +
+        optionHeight/2;
+    });
   }
 
   @action
@@ -58,7 +64,7 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
       }
     }
     let searchString = roundTime(term, this.steps);
-    select.actions.highlight(searchString);
     select.actions.scrollTo(searchString);
+    select.actions.highlight(searchString);
   }
 }
