@@ -20,7 +20,7 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
     let options = [];
     let now = moment(this.minTime, 'HH:mm');
     let end = moment(this.maxTime, 'HH:mm');
-    for (now; now.isSameOrBefore(end); now.add(this.steps, 'minutes')) {
+    for (now; now.isSameOrBefore(end); now.add(Math.max(this.steps || 0, 1), 'minutes')) {
       options.push(now.format('HH:mm'));
     }
     if (this.selected && ! options.includes(this.selected)) {

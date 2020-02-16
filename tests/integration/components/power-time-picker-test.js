@@ -44,6 +44,20 @@ module('Integration | Component | power-time-picker', function(hooks) {
     assert.equal(options.length, 10);
   });
 
+  test('it allows invalid minute steps', async function(assert) {
+    await render(hbs`
+      <PowerTimePicker @steps={{null}} @onChange={{fn (mut time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await click('.ember-power-select-search-input');
+
+    // should not crash
+    const options = document.querySelectorAll('.ember-power-select-option');
+    assert.equal(options[0].textContent.trim(), '06:00');
+  });
+
   test('it can set min and max time', async function(assert) {
     await render(hbs`
       <PowerTimePicker @minTime="12:00" @maxTime="13:00" @selected="12:00" @onChange={{fn (mut time)}} as |time|>
