@@ -39,18 +39,14 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
     if (index === -1) {
       return;
     }
-    let optionElement = optionsList.querySelectorAll('[data-option-index]').item(index);
+
     let optionHeight = 28;
     let optionOffset = index * optionHeight;
-    if (optionElement) {
-      optionOffset = optionElement.offsetTop;
-      optionHeight = optionElement.getBoundingClientRect().height;
-    }
     // ensure element gets centered in options list
     scheduler.schedule('affect', () => {
-      optionsList.scrollTop = optionOffset -
+      optionsList.scrollTop = Math.max(optionOffset -
         optionsList.getBoundingClientRect().height/2 +
-        optionHeight/2;
+        optionHeight/2);
     });
   }
 
