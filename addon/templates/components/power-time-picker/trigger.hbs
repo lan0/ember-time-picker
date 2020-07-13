@@ -9,9 +9,9 @@
   spellcheck="false"
   placeholder={{@placeholder}}
   oninput={{@onInput}}
-  onfocus={{@onFocus}}
-  onblur={{@onBlur}}
+  onfocus={{fn this._handleFocus}}
+  onblur={{fn this._handleBlur}}
   disabled={{@select.disabled}}
-  onmousedown={{fn this.onClick}}
-  onkeydown={{@onKeyDown}}
+  onmousedown={{fn this._handleMousedown}}
+  onkeydown={{fn this._handleKeyDown}}
 >
