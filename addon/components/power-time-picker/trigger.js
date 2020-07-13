@@ -45,10 +45,32 @@ export default @tagName('') @layout(templateLayout) class extends Component {
   }
 
   @action
-  onClick(e) {
+  _handleMousedown(e) {
     if (! this.select.isOpen) {
       run.schedule('actions', null, this.select.actions.open);
     }
+    e.target.select();
+    e.preventDefault();
     e.stopPropagation();
+  }
+
+  @action
+  _handleFocus() {
+    this.select.actions.open();
+    const inputElement = document.querySelector(`#ember-power-time-picker-input-${this.select.uniqueId}`);
+    inputElement.select();
+  }
+
+  @action
+  _handleBlur() {
+    this.select.actions.select(this.getSelectedAsText());
+  }
+
+  @action
+  _handleKeyDown(e) {
+    const highlighted = this.select.highlighted;
+    if (e.keyCode === 9 && this.select.searchText.length && highlighted && this.select.selected !== highlighted) { // TAB
+      this.select.actions.select(highlighted);
+    }
   }
 }
