@@ -55,13 +55,6 @@ export default @tagName('') @layout(templateLayout) class extends Component {
   }
 
   @action
-  _handleFocus() {
-    this.select.actions.open();
-    const inputElement = document.querySelector(`#ember-power-time-picker-input-${this.select.uniqueId}`);
-    inputElement.select();
-  }
-
-  @action
   _handleBlur() {
     this.select.actions.select(this.get('select.highlighted') || '');
   }

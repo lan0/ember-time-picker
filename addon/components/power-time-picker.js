@@ -64,4 +64,11 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
     select.actions.scrollTo(searchString);
     select.actions.highlight(searchString);
   }
+
+  @action
+  _handleFocus(select) {
+    const inputElement = document.querySelector(`#ember-power-time-picker-input-${select.uniqueId}`);
+    inputElement.focus();
+    inputElement.select();
+  }
 }
