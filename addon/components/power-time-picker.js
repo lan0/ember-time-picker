@@ -9,6 +9,7 @@ import { scheduler } from 'ember-raf-scheduler';
 
 export default @tagName('') @layout(templateLayout) class PowerTimePicker extends Component {
   selected;
+  tabindex = 0;
   steps = 5;
   minTime = '06:00';
   maxTime = '22:00';

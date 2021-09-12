@@ -2,11 +2,22 @@
 
 selected: {{this.time}}
 <PowerTimePicker
+  @tabindex="2"
   @minTime="06:00"
   @maxTime="09:00"
   @steps={{5}}
   @selected={{this.time}}
   @onChange={{fn (mut this.time)}}
+  as |time|>
+  {{time}}
+</PowerTimePicker>
+<PowerTimePicker
+  @tabindex="2"
+  @minTime="06:00"
+  @maxTime="09:00"
+  @steps={{5}}
+  @selected={{this.otherTime}}
+  @onChange={{fn (mut this.otherTime)}}
   as |time|>
   {{time}}
 </PowerTimePicker>
