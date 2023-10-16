@@ -1,21 +1,18 @@
-import Component from '@ember/component';
-import { action, computed } from '@ember/object';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import moment from 'moment';
 import roundTime from '../utils/round-time';
 import { indexOfOption } from 'ember-power-select/utils/group-utils';
-import templateLayout from '../templates/components/power-time-picker';
-import { layout, tagName } from "@ember-decorators/component";
 import { scheduler } from 'ember-raf-scheduler';
 
-export default @tagName('') @layout(templateLayout) class PowerTimePicker extends Component {
-  selected;
-  steps = 5;
-  minTime = '06:00';
-  maxTime = '22:00';
-  triggerComponent = 'power-time-picker/trigger';
-  optionsComponent = 'power-time-picker/options';
+export default class PowerTimePicker extends Component {
+  @tracked steps = this.args.steps ?? 5;
+  @tracked minTime = this.args.minTime ?? '06:00';
+  @tracked maxTime = this.args.maxTime ?? '22:00';
+  @tracked triggerComponent = this.args.triggerComponent ?? 'power-time-picker/trigger';
+  @tracked optionsComponent = this.args.optionsComponent ?? 'power-time-picker/options';
 
-  @computed('minTime', 'maxTime', 'steps', 'selected')
   get options() {
     let options = [];
     let now = moment(this.minTime, 'HH:mm');
@@ -23,8 +20,8 @@ export default @tagName('') @layout(templateLayout) class PowerTimePicker extend
     for (now; now.isSameOrBefore(end); now.add(Math.max(this.steps || 0, 1), 'minutes')) {
       options.push(now.format('HH:mm'));
     }
-    if (this.selected && ! options.includes(this.selected)) {
-      options.push(this.selected);
+    if (this.args.selected && ! options.includes(this.args.selected)) {
+      options.push(this.args.selected);
     }
     return options.sort();
   }
