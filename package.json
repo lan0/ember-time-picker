@@ -1,7 +1,7 @@
 {
   "name": "ember-power-time-picker",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "A time picker adodn based on ember-power-select.",
   "keywords": [
     "ember-addon"
   ],
