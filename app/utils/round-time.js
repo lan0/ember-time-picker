@@ -1,1 +1,1 @@
-export { default } from 'ember-power-time-picker/utils/round-time';
+export { default } from '@lan0/ember-power-time-picker/utils/round-time';
