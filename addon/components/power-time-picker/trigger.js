@@ -63,7 +63,10 @@ export default @tagName('') @layout(templateLayout) class extends Component {
 
   @action
   _handleBlur() {
-    this.select.actions.select(this.get('select.highlighted') || '');
+    if (! this.get('select.highlighted')) {
+      return;
+    }
+    this.select.actions.select(this.get('select.highlighted'));
   }
 
   @action
