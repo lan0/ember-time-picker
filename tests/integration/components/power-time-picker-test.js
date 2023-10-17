@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, triggerKeyEvent, fillIn, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { selectTime } from 'ember-power-time-picker/test-support/helpers';
+import { selectTime } from '@lan0/ember-power-time-picker/test-support/helpers';
 
 module('Integration | Component | power-time-picker', function(hooks) {
   setupRenderingTest(hooks);
