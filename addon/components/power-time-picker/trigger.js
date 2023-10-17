@@ -1,11 +1,10 @@
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
-import templateLayout from '../../templates/components/power-time-picker/trigger';
-import { layout, tagName } from "@ember-decorators/component";
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default @tagName('') @layout(templateLayout) class extends Component {
+export default class PowerTimePickerTrigger extends Component {
+  tagName = '';
   @tracked
   text = '';
 
