@@ -238,4 +238,32 @@ module('Integration | Component | power-time-picker', function(hooks) {
     await click('.ember-power-select-option');
     assert.equal(document.querySelector('.ember-power-select-search-input').value, '13:15', 'the input gets set to selected value');
   });
+
+  test('picker updates if min/max value has been updated externally', async function (assert) {
+    this.minTime = "10:00";
+    this.maxTime = "12:00"
+    await render(hbs`
+      <PowerTimePicker @minTime={{this.minTime}} @steps={{30}} @maxTime={{this.maxTime}} @selected="11:00" @onChange={{fn (mut this.time)}} as |time|>
+        {{time}}
+      </PowerTimePicker>
+    `);
+
+    await click('.ember-power-select-search-input');
+
+    let options = document.querySelectorAll('.ember-power-select-option');
+
+    assert.equal(options[0].textContent.trim(), '10:00');
+    assert.equal(options[options.length - 1].textContent.trim(), '12:00');
+
+    await click('.ember-power-select-search-input');
+
+    this.set('minTime', '11:00');
+    this.set('maxTime', '13:00')
+
+    await click('.ember-power-select-search-input');
+
+    options = document.querySelectorAll('.ember-power-select-option');
+    assert.equal(options[0].textContent.trim(), '11:00');
+    assert.equal(options[options.length - 1].textContent.trim(), '13:00');
+  })
 });
