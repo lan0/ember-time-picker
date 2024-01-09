@@ -8,10 +8,16 @@ import { scheduler } from 'ember-raf-scheduler';
 
 export default class PowerTimePicker extends Component {
   @tracked steps = this.args.steps ?? 5;
-  @tracked minTime = this.args.minTime ?? '06:00';
-  @tracked maxTime = this.args.maxTime ?? '22:00';
   @tracked triggerComponent = this.args.triggerComponent ?? 'power-time-picker/trigger';
   @tracked optionsComponent = this.args.optionsComponent ?? 'power-time-picker/options';
+
+  get minTime() {
+    return this.args.minTime ?? '06:00';
+  }
+
+  get maxTime() {
+    return this.args.maxTime ?? '22:00';
+  }
 
   get options() {
     let options = [];
