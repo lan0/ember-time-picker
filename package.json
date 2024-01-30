@@ -26,7 +26,6 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@ember-decorators/component": "^6.0.0",
     "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1",
     "ember-power-select": "^4.1.7"
