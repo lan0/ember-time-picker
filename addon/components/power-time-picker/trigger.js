@@ -10,11 +10,11 @@ export default class PowerTimePickerTrigger extends Component {
 
   didReceiveAttrs() {
     super.didReceiveAttrs(...arguments);
-    let oldSelect = this.get('oldSelect');
-    let newSelect = this.set('oldSelect', this.get('select'));
+    let oldSelect = this.oldSelect;
+    let newSelect = this.set('oldSelect', this.select);
 
-    if (! oldSelect) {
-      return this.text = this.getSelectedAsText();
+    if (!oldSelect) {
+      return (this.text = this.getSelectedAsText());
     }
 
     /*
@@ -22,7 +22,9 @@ export default class PowerTimePickerTrigger extends Component {
      * the select box.
      */
     if (oldSelect.isOpen && !newSelect.isOpen) {
-      let input = document.querySelector(`#ember-power-time-picker-input-${newSelect.uniqueId}`);
+      let input = document.querySelector(
+        `#ember-power-time-picker-input-${newSelect.uniqueId}`
+      );
       let newText = this.getSelectedAsText();
       if (input.value !== newText) {
         input.value = newText;
@@ -45,7 +47,7 @@ export default class PowerTimePickerTrigger extends Component {
 
   @action
   _handleMousedown(e) {
-    if (! this.select.isOpen) {
+    if (!this.select.isOpen) {
       run.schedule('actions', null, this.select.actions.open);
     }
     e.target.select();
@@ -56,7 +58,9 @@ export default class PowerTimePickerTrigger extends Component {
   @action
   _handleFocus() {
     this.select.actions.open();
-    const inputElement = document.querySelector(`#ember-power-time-picker-input-${this.select.uniqueId}`);
+    const inputElement = document.querySelector(
+      `#ember-power-time-picker-input-${this.select.uniqueId}`
+    );
     inputElement.select();
   }
 
@@ -70,7 +74,13 @@ export default class PowerTimePickerTrigger extends Component {
   @action
   _handleKeyDown(e) {
     const highlighted = this.select.highlighted;
-    if (e.keyCode === 9 && this.select.searchText.length && highlighted && this.select.selected !== highlighted) { // TAB
+    if (
+      e.keyCode === 9 &&
+      this.select.searchText.length &&
+      highlighted &&
+      this.select.selected !== highlighted
+    ) {
+      // TAB
       this.select.actions.select(highlighted);
     }
   }
