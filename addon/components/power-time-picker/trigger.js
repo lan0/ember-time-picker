@@ -1,20 +1,20 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { run } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class PowerTimePickerTrigger extends Component {
   tagName = '';
-  @tracked
-  text = '';
+  @tracked text = '';
+  @tracked oldSelect;
 
-  didReceiveAttrs() {
-    super.didReceiveAttrs(...arguments);
-    let oldSelect = this.get('oldSelect');
-    let newSelect = this.set('oldSelect', this.get('select'));
+  @action
+  selectDidUpdate(_element, [newSelect]) {
+    let oldSelect = this.oldSelect;
+    this.oldSelect = newSelect;
 
-    if (! oldSelect) {
-      return this.text = this.getSelectedAsText();
+    if (!oldSelect) {
+      return (this.text = this.getSelectedAsText());
     }
 
     /*
@@ -22,7 +22,9 @@ export default class PowerTimePickerTrigger extends Component {
      * the select box.
      */
     if (oldSelect.isOpen && !newSelect.isOpen) {
-      let input = document.querySelector(`#ember-power-time-picker-input-${newSelect.uniqueId}`);
+      let input = document.querySelector(
+        `#ember-power-time-picker-input-${newSelect.uniqueId}`
+      );
       let newText = this.getSelectedAsText();
       if (input.value !== newText) {
         input.value = newText;
@@ -40,13 +42,13 @@ export default class PowerTimePickerTrigger extends Component {
   }
 
   getSelectedAsText() {
-    return this.get('select.selected') || '';
+    return this.args.select.selected || '';
   }
 
   @action
   _handleMousedown(e) {
-    if (! this.select.isOpen) {
-      run.schedule('actions', null, this.select.actions.open);
+    if (!this.args.select.isOpen) {
+      run.schedule('actions', null, this.args.select.actions.open);
     }
     e.target.select();
     e.preventDefault();
@@ -55,23 +57,31 @@ export default class PowerTimePickerTrigger extends Component {
 
   @action
   _handleFocus() {
-    this.select.actions.open();
-    const inputElement = document.querySelector(`#ember-power-time-picker-input-${this.select.uniqueId}`);
+    this.args.select.actions.open();
+    const inputElement = document.querySelector(
+      `#ember-power-time-picker-input-${this.args.select.uniqueId}`
+    );
     inputElement.select();
   }
 
   @action
   _handleBlur() {
-    if (this.select.actions.isOpen) {
-      this.select.actions.select(this.get('select.highlighted') || '');
+    if (this.args.select.actions.isOpen) {
+      this.args.select.actions.select(this.args.select.highlighted || '');
     }
   }
 
   @action
   _handleKeyDown(e) {
-    const highlighted = this.select.highlighted;
-    if (e.keyCode === 9 && this.select.searchText.length && highlighted && this.select.selected !== highlighted) { // TAB
-      this.select.actions.select(highlighted);
+    const highlighted = this.args.select.highlighted;
+    if (
+      e.keyCode === 9 &&
+      this.args.select.searchText.length &&
+      highlighted &&
+      this.args.select.selected !== highlighted
+    ) {
+      // TAB
+      this.args.select.actions.select(highlighted);
     }
   }
 }

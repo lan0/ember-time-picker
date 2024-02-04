@@ -8,8 +8,10 @@ import { scheduler } from 'ember-raf-scheduler';
 
 export default class PowerTimePicker extends Component {
   @tracked steps = this.args.steps ?? 5;
-  @tracked triggerComponent = this.args.triggerComponent ?? 'power-time-picker/trigger';
-  @tracked optionsComponent = this.args.optionsComponent ?? 'power-time-picker/options';
+  @tracked triggerComponent =
+    this.args.triggerComponent ?? 'power-time-picker/trigger';
+  @tracked optionsComponent =
+    this.args.optionsComponent ?? 'power-time-picker/options';
 
   get minTime() {
     return this.args.minTime ?? '06:00';
@@ -23,10 +25,14 @@ export default class PowerTimePicker extends Component {
     let options = [];
     let now = moment(this.minTime, 'HH:mm');
     let end = moment(this.maxTime, 'HH:mm');
-    for (now; now.isSameOrBefore(end); now.add(Math.max(this.steps || 0, 1), 'minutes')) {
+    for (
+      now;
+      now.isSameOrBefore(end);
+      now.add(Math.max(this.steps || 0, 1), 'minutes')
+    ) {
       options.push(now.format('HH:mm'));
     }
-    if (this.args.selected && ! options.includes(this.args.selected)) {
+    if (this.args.selected && !options.includes(this.args.selected)) {
       options.push(this.args.selected);
     }
     return options.sort();
@@ -34,7 +40,9 @@ export default class PowerTimePicker extends Component {
 
   // from power-select.js
   scrollTo(option, select) {
-    let optionsList = document.getElementById(`ember-power-select-options-${select.uniqueId}`);
+    let optionsList = document.getElementById(
+      `ember-power-select-options-${select.uniqueId}`
+    );
     if (!optionsList) {
       return;
     }
@@ -47,16 +55,22 @@ export default class PowerTimePicker extends Component {
     let optionOffset = index * optionHeight;
     // ensure element gets centered in options list
     scheduler.schedule('affect', () => {
-      optionsList.scrollTop = Math.max(optionOffset -
-        optionsList.getBoundingClientRect().height/2 +
-        optionHeight/2);
+      optionsList.scrollTop = Math.max(
+        optionOffset -
+          optionsList.getBoundingClientRect().height / 2 +
+          optionHeight / 2
+      );
     });
   }
 
   @action
   scrollToTime(term, select) {
     if (term.length === 3) {
-      if (term.substr(0, 1) === '0' || term.substr(0, 1) === '1' || term.substr(0, 1) === '2') {
+      if (
+        term.substr(0, 1) === '0' ||
+        term.substr(0, 1) === '1' ||
+        term.substr(0, 1) === '2'
+      ) {
         term = term.padEnd(4, '0');
       } else {
         term = term.padStart(4, '0');
