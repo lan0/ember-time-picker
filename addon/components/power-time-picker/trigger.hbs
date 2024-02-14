@@ -1,3 +1,4 @@
+{{! template-lint-disable no-down-event-binding }}
 <input type="text"
   value={{this.text}}
   role="combobox"
@@ -9,10 +10,10 @@
   spellcheck="false"
   placeholder={{@placeholder}}
   oninput={{@onInput}}
-  onfocus={{fn this._handleFocus}}
-  onblur={{fn this._handleBlur}}
+  onfocus={{this._handleFocus}}
+  onblur={{this._handleBlur}}
   disabled={{@select.disabled}}
-  onmousedown={{fn this._handleMousedown}}
-  onkeydown={{fn this._handleKeyDown}}
+  onmousedown={{this._handleMousedown}}
+  onkeydown={{this._handleKeyDown}}
   {{did-update this.selectDidUpdate @select}}
 >
