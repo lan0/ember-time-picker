@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { run } from '@ember/runloop';
+import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
@@ -33,7 +33,7 @@ export default class PowerTimePickerTrigger extends Component {
     }
 
     if (newSelect.lastSearchedText !== oldSelect.lastSearchedText) {
-      run.schedule('actions', null, newSelect.actions.open);
+      schedule('actions', null, newSelect.actions.open);
     }
 
     if (oldSelect.selected !== newSelect.selected) {
@@ -48,7 +48,7 @@ export default class PowerTimePickerTrigger extends Component {
   @action
   _handleMousedown(e) {
     if (!this.args.select.isOpen) {
-      run.schedule('actions', null, this.args.select.actions.open);
+      schedule('actions', null, this.args.select.actions.open);
     }
     e.target.select();
     e.preventDefault();
