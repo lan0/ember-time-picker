@@ -53,8 +53,8 @@ devDependencies:
     specifier: ~3.28.6
     version: 3.28.6
   ember-cli-dependency-checker:
-    specifier: ^3.2.0
-    version: 3.2.0
+    specifier: ^3.3.2
+    version: 3.3.2(ember-cli@3.28.6)
   ember-cli-inject-live-reload:
     specifier: ^2.1.0
     version: 2.1.0
@@ -392,6 +392,20 @@ packages:
       '@babel/helper-simple-access': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.20
+
+  /@babel/helper-module-transforms@7.23.0(@babel/core@7.24.5):
+    resolution: {integrity: sha512-WhDWw1tdrlT0gMgUJSlX0IQvoO1eN279zrAUbVB+KpV2c3Tylz8+GnKOLllCS6Z/iZQEyVYxhZVUdPTqs2YYPw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-module-imports': 7.22.15
+      '@babel/helper-simple-access': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      '@babel/helper-validator-identifier': 7.22.20
+    dev: true
 
   /@babel/helper-module-transforms@7.24.5(@babel/core@7.24.5):
     resolution: {integrity: sha512-9GxeY8c2d2mdQUP1Dye0ks3VDyIMS98kt/llQ2nUId8IsWqTF0l1LkSX0/uP7l7MCDrzXS009Hyhe2gzTiGW8A==}
@@ -1060,6 +1074,17 @@ packages:
       '@babel/core': 7.23.2
       '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.2)
       '@babel/helper-plugin-utils': 7.22.5
+
+  /@babel/plugin-transform-modules-amd@7.23.0(@babel/core@7.24.5):
+    resolution: {integrity: sha512-xWT5gefv2HGSm4QHtgc1sYPbseOyf+FFDo2JbpE25GWl5BqTGO9IMwTYJRoIdjsF85GE+VegHxSCUt5EvoYTAw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.24.5)
+      '@babel/helper-plugin-utils': 7.22.5
+    dev: true
 
   /@babel/plugin-transform-modules-commonjs@7.23.0(@babel/core@7.23.2):
     resolution: {integrity: sha512-32Xzss14/UVc7k9g775yMIvkVK8xwKE0DPdP5JTapr3+Z9w4tzeOuLNY6BXDQR6BdnzIlXnCGAzsk/ICHBLVWQ==}
@@ -4257,7 +4282,7 @@ packages:
       tmp: 0.0.33
       tree-sync: 2.1.0
       underscore.string: 3.3.5
-      watch-detector: 1.0.0
+      watch-detector: 1.0.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5682,11 +5707,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli-dependency-checker@3.2.0:
-    resolution: {integrity: sha512-dkSmcJ/jY/2ms/S6ph2jXSfOW5VfOpLfg5DFEbra0SaMNgYkNDFF1o0U4OdTsG37L5h/AXWNuVtnOa4TMabz9Q==}
+  /ember-cli-dependency-checker@3.3.2(ember-cli@3.28.6):
+    resolution: {integrity: sha512-PwkrW5oYsdPWwt+0Tojufmv/hxVETTjkrEdK7ANQB2VSnqpA5UcYubwpQM9ONuR2J8wyNDMwEHlqIrk/FYtBsQ==}
     engines: {node: '>= 6'}
+    peerDependencies:
+      ember-cli: ^3.2.0 || >=4.0.0
     dependencies:
       chalk: 2.4.2
+      ember-cli: 3.28.6
       find-yarn-workspace-root: 1.2.1
       is-git-url: 1.0.0
       resolve: 1.22.8
@@ -5941,8 +5969,8 @@ packages:
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
-      '@babel/core': 7.23.2
-      '@babel/plugin-transform-modules-amd': 7.23.0(@babel/core@7.23.2)
+      '@babel/core': 7.24.5
+      '@babel/plugin-transform-modules-amd': 7.23.0(@babel/core@7.24.5)
       amd-name-resolver: 1.3.1
       babel-plugin-module-resolver: 4.1.0
       bower-config: 1.4.3
@@ -6029,7 +6057,7 @@ packages:
       tree-sync: 2.1.0
       uuid: 8.3.2
       walk-sync: 2.2.0
-      watch-detector: 1.0.0
+      watch-detector: 1.0.2
       workerpool: 6.5.1
       yam: 1.0.0
     transitivePeerDependencies:
@@ -9652,6 +9680,7 @@ packages:
   /normalize-path@2.1.1:
     resolution: {integrity: sha512-3pKJwH184Xo/lnH6oyP1q2pMd7HcypqqmRs91/6/i2CGtWwIKGCkOOMTm/zXbgTEWHw1uNpNi/igc3ePOYHb6w==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       remove-trailing-separator: 1.1.0
     dev: true
@@ -10662,6 +10691,7 @@ packages:
 
   /remove-trailing-separator@1.1.0:
     resolution: {integrity: sha512-/hS+Y0u3aOfIETiaiirUFwDBDzmXPvO+jAfKTitUngIPzdKc6Z0LoFjM/CK5PL4C+eKwHohlHAb6H0VFfmmUsw==}
+    requiresBuild: true
     dev: true
 
   /repeat-element@1.1.3:
@@ -12355,12 +12385,11 @@ packages:
       makeerror: 1.0.12
     dev: true
 
-  /watch-detector@1.0.0:
-    resolution: {integrity: sha512-siywMl3fXK30Tlpu/dUBHhlpxhQmHdguZ8OIb813eU9lrVmmsJa9k0+n1HtJ+7p3SzFCPq2XbmR3GUYpPC3TBA==}
+  /watch-detector@1.0.2:
+    resolution: {integrity: sha512-MrJK9z7kD5Gl3jHBnnBVHvr1saVGAfmkyyrvuNzV/oe0Gr1nwZTy5VSA0Gw2j2Or0Mu8HcjUa44qlBvC2Ofnpg==}
     engines: {node: '>= 8'}
     dependencies:
       heimdalljs-logger: 0.1.10
-      semver: 6.3.1
       silent-error: 1.1.1
       tmp: 0.1.0
     transitivePeerDependencies:
