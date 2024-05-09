@@ -23,7 +23,7 @@ export default class PowerTimePickerTrigger extends Component {
      */
     if (oldSelect.isOpen && !newSelect.isOpen) {
       let input = document.querySelector(
-        `#ember-power-time-picker-input-${newSelect.uniqueId}`
+        `#ember-power-time-picker-input-${newSelect.uniqueId}`,
       );
       let newText = this.getSelectedAsText();
       if (input.value !== newText) {
@@ -59,7 +59,7 @@ export default class PowerTimePickerTrigger extends Component {
   _handleFocus() {
     this.args.select.actions.open();
     const inputElement = document.querySelector(
-      `#ember-power-time-picker-input-${this.args.select.uniqueId}`
+      `#ember-power-time-picker-input-${this.args.select.uniqueId}`,
     );
     inputElement.select();
   }

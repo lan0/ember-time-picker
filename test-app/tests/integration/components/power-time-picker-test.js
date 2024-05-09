@@ -16,17 +16,13 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await click('.ember-power-select-search-input');
 
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '06:30',
-      'it should highlight selected option by default'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('06:30', 'it should highlight selected option by default');
     // scrolltop > 0 because 06:30 gets centered
     assert.ok(
       document.querySelector('.ember-power-select-options').scrollTop > 0,
-      'it should center highlighted option'
+      'it should center highlighted option',
     );
   });
 
@@ -40,10 +36,10 @@ module('Integration | Component | power-time-picker', function (hooks) {
     await click('.ember-power-select-search-input');
 
     const options = document.querySelectorAll('.ember-power-select-option');
-    assert.equal(options[0].textContent.trim(), '11:15');
-    assert.equal(options[1].textContent.trim(), '11:30');
-    assert.equal(options[options.length - 1].textContent.trim(), '13:30');
-    assert.equal(options.length, 10);
+    assert.dom(options[0]).hasText('11:15');
+    assert.dom(options[1]).hasText('11:30');
+    assert.dom(options[options.length - 1]).hasText('13:30');
+    assert.strictEqual(options.length, 10);
   });
 
   test('it allows invalid minute steps', async function (assert) {
@@ -57,7 +53,7 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     // should not crash
     const options = document.querySelectorAll('.ember-power-select-option');
-    assert.equal(options[0].textContent.trim(), '06:00');
+    assert.dom(options[0]).hasText('06:00');
   });
 
   test('it can set min and max time', async function (assert) {
@@ -70,15 +66,13 @@ module('Integration | Component | power-time-picker', function (hooks) {
     await click('.ember-power-select-search-input');
 
     const options = document.querySelectorAll('.ember-power-select-option');
-    assert.equal(options[0].textContent.trim(), '12:00');
-    assert.equal(options[options.length - 1].textContent.trim(), '12:35');
-    assert.equal(options.length, 8);
+    assert.dom(options[0]).hasText('12:00');
+    assert.dom(options[options.length - 1]).hasText('12:35');
+    assert.strictEqual(options.length, 8);
   });
 
   test('it sends an action on selection', async function (assert) {
-    assert.expect(1);
-
-    this.change = (time) => assert.equal(time, '14:00');
+    this.change = (time) => assert.strictEqual(time, '14:00');
 
     await render(hbs`
       <PowerTimePicker @selected="12:00" @onChange={{this.change}} as |time|>
@@ -98,10 +92,7 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await click('.ember-power-select-search-input');
 
-    assert.equal(
-      document.querySelector('.ember-power-select-trigger input').value,
-      '05:00'
-    );
+    assert.dom('.ember-power-select-trigger input').hasValue('05:00');
   });
 
   test('it does not duplicate selected item', async function (assert) {
@@ -114,9 +105,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
     await click('.ember-power-select-search-input');
 
     const options = document.querySelectorAll('.ember-power-select-option');
-    assert.equal(options[0].textContent.trim(), '06:00');
-    assert.equal(options[1].textContent.trim(), '06:15');
-    assert.equal(options[2].textContent.trim(), '06:30');
+    assert.dom(options[0]).hasText('06:00');
+    assert.dom(options[1]).hasText('06:15');
+    assert.dom(options[2]).hasText('06:30');
   });
 
   test('it highlights time on search', async function (assert) {
@@ -128,12 +119,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await fillIn('.ember-power-select-search-input', '12');
 
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '12:00'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('12:00');
   });
 
   test('it supports search with colons omitted', async function (assert) {
@@ -145,12 +133,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await fillIn('.ember-power-select-search-input', '1215');
 
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '12:15'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('12:15');
   });
 
   test('it highlights nearest match', async function (assert) {
@@ -162,12 +147,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await fillIn('.ember-power-select-search-input', '1337');
 
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '13:30'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('13:30');
   });
 
   test('it allows leading 0 to be omitted', async function (assert) {
@@ -179,12 +161,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await fillIn('.ember-power-select-search-input', '815');
 
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '08:15'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('08:15');
   });
 
   test('it allows last number to be omitted', async function (assert) {
@@ -195,12 +174,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
     `);
 
     await fillIn('.ember-power-select-search-input', '104');
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '10:45'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('10:45');
   });
 
   test('it allows leading zero in fuzzy search', async function (assert) {
@@ -211,12 +187,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
     `);
 
     await fillIn('.ember-power-select-search-input', '073');
-    assert.equal(
-      document
-        .querySelector('.ember-power-select-option[aria-current=true]')
-        .textContent.trim(),
-      '07:30'
-    );
+    assert
+      .dom('.ember-power-select-option[aria-current=true]')
+      .hasText('07:30');
   });
 
   test('it fills out search input with selected value', async function (assert) {
@@ -229,13 +202,11 @@ module('Integration | Component | power-time-picker', function (hooks) {
     await selectTime('', '14:00');
     assert.notOk(
       document.querySelector('.ember-power-select-dropdown'),
-      'the component is closed'
+      'the component is closed',
     );
-    assert.equal(
-      document.querySelector('.ember-power-select-search-input').value,
-      '14:00',
-      'the input contains the selected option'
-    );
+    assert
+      .dom('.ember-power-select-search-input')
+      .hasValue('14:00', 'the input contains the selected option');
   });
 
   test('it resets search value on close', async function (assert) {
@@ -249,17 +220,15 @@ module('Integration | Component | power-time-picker', function (hooks) {
     await triggerKeyEvent(
       '.ember-power-select-search-input',
       'keydown',
-      'Escape'
+      'Escape',
     );
     assert.notOk(
       document.querySelector('.ember-power-select-dropdown'),
-      'the component is closed'
+      'the component is closed',
     );
-    assert.equal(
-      document.querySelector('.ember-power-select-search-input').value,
-      '',
-      'the search gets reset'
-    );
+    assert
+      .dom('.ember-power-select-search-input')
+      .hasValue('', 'the search gets reset');
   });
 
   test('it resets search input value on select', async function (assert) {
@@ -271,11 +240,9 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     await fillIn('.ember-power-select-search-input', '1400');
     await click('.ember-power-select-option');
-    assert.equal(
-      document.querySelector('.ember-power-select-search-input').value,
-      '13:15',
-      'the input gets set to selected value'
-    );
+    assert
+      .dom('.ember-power-select-search-input')
+      .hasValue('13:15', 'the input gets set to selected value');
   });
 
   test('picker updates if min/max value has been updated externally', async function (assert) {
@@ -291,8 +258,8 @@ module('Integration | Component | power-time-picker', function (hooks) {
 
     let options = document.querySelectorAll('.ember-power-select-option');
 
-    assert.equal(options[0].textContent.trim(), '10:00');
-    assert.equal(options[options.length - 1].textContent.trim(), '12:00');
+    assert.dom(options[0]).hasText('10:00');
+    assert.dom(options[options.length - 1]).hasText('12:00');
 
     await click('.ember-power-select-search-input');
 
@@ -302,7 +269,7 @@ module('Integration | Component | power-time-picker', function (hooks) {
     await click('.ember-power-select-search-input');
 
     options = document.querySelectorAll('.ember-power-select-option');
-    assert.equal(options[0].textContent.trim(), '11:00');
-    assert.equal(options[options.length - 1].textContent.trim(), '13:00');
+    assert.dom(options[0]).hasText('11:00');
+    assert.dom(options[options.length - 1]).hasText('13:00');
   });
 });

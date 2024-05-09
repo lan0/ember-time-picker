@@ -41,7 +41,7 @@ export default class PowerTimePicker extends Component {
   // from power-select.js
   scrollTo(option, select) {
     let optionsList = document.getElementById(
-      `ember-power-select-options-${select.uniqueId}`
+      `ember-power-select-options-${select.uniqueId}`,
     );
     if (!optionsList) {
       return;
@@ -58,7 +58,7 @@ export default class PowerTimePicker extends Component {
       optionsList.scrollTop = Math.max(
         optionOffset -
           optionsList.getBoundingClientRect().height / 2 +
-          optionHeight / 2
+          optionHeight / 2,
       );
     });
   }

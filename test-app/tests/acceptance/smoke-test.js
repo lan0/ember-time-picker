@@ -11,9 +11,6 @@ module('Acceptance | smoke', function (hooks) {
 
     await selectTime('', '12:00');
 
-    assert.equal(
-      document.querySelector('.ember-power-select-trigger input').value,
-      '12:00'
-    );
+    assert.dom('.ember-power-select-trigger input').hasValue('12:00');
   });
 });
