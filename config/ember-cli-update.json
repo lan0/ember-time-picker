@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectName": "@lan0/ember-power-time-picker",
+  "packages": [
+    {
+      "name": "@embroider/addon-blueprint",
+      "version": "2.16.0",
+      "blueprints": [
+        {
+          "name": "@embroider/addon-blueprint",
+          "isBaseBlueprint": true,
+          "options": [
+            "--ci-provider=github",
+            "--pnpm"
+          ]
+        }
+      ]
+    }
+  ]
+}
