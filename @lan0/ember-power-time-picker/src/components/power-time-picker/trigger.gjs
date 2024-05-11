@@ -2,9 +2,9 @@ import Component from '@glimmer/component';
 import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import didUpdate from '@ember/render-modifiers/modifiers/did-update';
 
 export default class PowerTimePickerTrigger extends Component {
-  tagName = '';
   @tracked text = '';
   @tracked oldSelect;
 
@@ -84,4 +84,24 @@ export default class PowerTimePickerTrigger extends Component {
       this.args.select.actions.select(highlighted);
     }
   }
+
+  <template>
+    {{! template-lint-disable no-pointer-down-event-binding }}
+    <input type="text"
+      value={{this.text}} id="ember-power-time-picker-input-{{@select.uniqueId}}"
+      class="ember-power-time-picker-input ember-power-select-search-input"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      placeholder={{@placeholder}}
+      oninput={{@onInput}}
+      onfocus={{this._handleFocus}}
+      onblur={{this._handleBlur}}
+      disabled={{@select.disabled}}
+      onmousedown={{this._handleMousedown}}
+      onkeydown={{this._handleKeyDown}}
+      {{didUpdate this.selectDidUpdate @select}}
+    >
+  </template>
 }

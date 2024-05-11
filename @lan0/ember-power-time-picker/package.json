@@ -31,17 +31,18 @@
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'"
   },
   "dependencies": {
+    "@ember/render-modifiers": "^2.1.0",
     "@embroider/addon-shim": "^1.8.7",
+    "@embroider/util": "^1.13.1",
     "decorator-transforms": "^1.0.1",
     "ember-power-select": "^7.0.0",
-    "ember-raf-scheduler": "0.4.1"
+    "ember-truth-helpers": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/runtime": "^7.17.0",
     "@embroider/addon-dev": "^4.1.0",
-    "@ember/test-helpers": "^3.3.0",
     "@rollup/plugin-babel": "^6.0.4",
     "babel-plugin-ember-template-compilation": "^2.2.1",
     "concurrently": "^8.2.2",
@@ -61,6 +62,7 @@
     "@ember/string": "^3.1.1",
     "@ember/test-helpers": "^2 || ^3",
     "@html-next/vertical-collection": "^4.0.0",
+    "ember-raf-scheduler": "0.4.1",
     "moment": "^2"
   },
   "peerDependenciesMeta": {
@@ -79,9 +81,7 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {
-      "./components/power-time-picker.js": "./dist/_app_/components/power-time-picker.js",
-      "./components/power-time-picker/options.js": "./dist/_app_/components/power-time-picker/options.js",
-      "./components/power-time-picker/trigger.js": "./dist/_app_/components/power-time-picker/trigger.js"
+      "./components/power-time-picker.js": "./dist/_app_/components/power-time-picker.js"
     }
   }
 }

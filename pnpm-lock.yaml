@@ -6,6 +6,7 @@ settings:
 
 overrides:
   '@types/eslint': ^7.0.0
+  ember-raf-scheduler: 0.4.1
 
 importers:
 
@@ -23,15 +24,24 @@ importers:
 
   '@lan0/ember-power-time-picker':
     dependencies:
+      '@ember/render-modifiers':
+        specifier: ^2.1.0
+        version: 2.1.0(@babel/core@7.24.5)
       '@ember/string':
         specifier: ^3.1.1
         version: 3.1.1
+      '@ember/test-helpers':
+        specifier: ^2 || ^3
+        version: 3.3.0(ember-source@5.8.0)(webpack@5.91.0)
       '@embroider/addon-shim':
         specifier: ^1.8.7
         version: 1.8.7
+      '@embroider/util':
+        specifier: ^1.13.1
+        version: 1.13.1
       '@html-next/vertical-collection':
         specifier: ^4.0.0
-        version: 4.0.2
+        version: 4.0.2(ember-source@5.8.0)
       decorator-transforms:
         specifier: ^1.0.1
         version: 1.2.1(@babel/core@7.24.5)
@@ -40,7 +50,10 @@ importers:
         version: 7.2.0(@babel/core@7.24.5)(webpack@5.91.0)
       ember-raf-scheduler:
         specifier: 0.4.1
-        version: 0.4.1
+        version: 0.4.1(ember-source@5.8.0)
+      ember-truth-helpers:
+        specifier: ^4.0.3
+        version: 4.0.3
       moment:
         specifier: ^2
         version: 2.30.1
@@ -54,9 +67,6 @@ importers:
       '@babel/runtime':
         specifier: ^7.17.0
         version: 7.23.9
-      '@ember/test-helpers':
-        specifier: ^3.3.0
-        version: 3.3.0(ember-source@5.8.0)(webpack@5.91.0)
       '@embroider/addon-dev':
         specifier: ^4.1.0
         version: 4.3.1(rollup@4.17.2)
@@ -134,7 +144,7 @@ importers:
         version: 1.1.2
       '@html-next/vertical-collection':
         specifier: ^4.0.2
-        version: 4.0.2
+        version: 4.0.2(ember-source@5.8.0)
       '@lan0/ember-power-time-picker':
         specifier: workspace:*
         version: link:../@lan0/ember-power-time-picker
@@ -192,6 +202,9 @@ importers:
       ember-qunit:
         specifier: ^8.0.2
         version: 8.0.2(@ember/test-helpers@3.3.0)(ember-source@5.8.0)(qunit@2.20.1)
+      ember-raf-scheduler:
+        specifier: 0.4.1
+        version: 0.4.1(ember-source@5.8.0)
       ember-resolver:
         specifier: ^11.0.1
         version: 11.0.1(ember-source@5.8.0)
@@ -686,7 +699,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-plugin-utils': 7.24.5
 
   /@babel/plugin-syntax-export-namespace-from@7.8.3(@babel/core@7.24.5):
     resolution: {integrity: sha512-MXf5laXo6c1IbEbegDmzGPwGNTsHZmEy6QGznu5Sh2UCWvueywb2ee+CCE4zQiZstxU9BMoQO9i6zUFSY0Kj0Q==}
@@ -1961,7 +1974,6 @@ packages:
       - '@glint/template'
       - supports-color
       - webpack
-    dev: true
 
   /@ember/test-waiters@3.1.0:
     resolution: {integrity: sha512-bb9h95ktG2wKY9+ja1sdsFBdOms2lB19VWs8wmNpzgHv1NCetonBoV5jHBV4DHt0uS1tg9z66cZqhUVlYs96KQ==}
@@ -1973,7 +1985,6 @@ packages:
       semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@embroider/addon-dev@4.3.1(rollup@4.17.2):
     resolution: {integrity: sha512-CNZ4Y69PPIZAAGGoERjvDcrwOwWTuUmnRYu+XnmqKk0opdlu/PTssO9YWyxp8AnvGd2l7iLCjEn5mpLFvifstA==}
@@ -2443,7 +2454,7 @@ packages:
   /@handlebars/parser@2.0.0:
     resolution: {integrity: sha512-EP9uEDZv/L5Qh9IWuMUGJRfwhXJ4h1dqKTT4/3+tY0eu7sPis7xh23j61SYUnNF4vqCQvvUXpDo9Bh/+q1zASA==}
 
-  /@html-next/vertical-collection@4.0.2:
+  /@html-next/vertical-collection@4.0.2(ember-source@5.8.0):
     resolution: {integrity: sha512-S8cgntEDdXrOwdylVGDh1BFe+nX5uuUzzb3teh1FE++/kbqsOfUpXOYRUsEzsqb0fRqcm6eLxvtNb282Zr67rQ==}
     engines: {node: '>= 14.*'}
     dependencies:
@@ -2454,8 +2465,9 @@ packages:
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-cli-version-checker: 5.1.2
-      ember-raf-scheduler: 0.3.0
+      ember-raf-scheduler: 0.4.1(ember-source@5.8.0)
     transitivePeerDependencies:
+      - ember-source
       - supports-color
 
   /@humanwhocodes/config-array@0.11.14:
@@ -5954,7 +5966,6 @@ packages:
 
   /dom-element-descriptors@0.5.0:
     resolution: {integrity: sha512-CVzntLid1oFVHTKdTp/Qu7Kz+wSm8uO30TSQyAJ6n4Dz09yTzVQn3S1oRhVhUubxdMuKs1DjDqt88pubHagbPw==}
-    dev: true
 
   /domexception@2.0.1:
     resolution: {integrity: sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==}
@@ -6889,24 +6900,16 @@ packages:
       - supports-color
     dev: true
 
-  /ember-raf-scheduler@0.3.0:
-    resolution: {integrity: sha512-i8JWQidNCX7n5TOTIKRDR0bnsQN9aJh/GtOJKINz2Wr+I7L7sYVhli6MFqMYNGKC9j9e6iWsznfAIxddheyEow==}
-    engines: {node: 12.* || 14.* || >= 16}
-    dependencies:
-      ember-cli-babel: 7.26.11
-    transitivePeerDependencies:
-      - supports-color
-
-  /ember-raf-scheduler@0.4.1:
+  /ember-raf-scheduler@0.4.1(ember-source@5.8.0):
     resolution: {integrity: sha512-rVAyCgvYZnRBFRD//F3OyvR/wFYxnLhT4FWNMKbxGzIcZBT8w+yvXrp4Jsz9q1OdSGObQNwfG8+GOH0BF7FMeQ==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
       ember-source: ^3.12.0
     dependencies:
       ember-cli-babel: 7.26.11
+      ember-source: 5.8.0(@babel/core@7.24.5)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.91.0)
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /ember-resolver@11.0.1(ember-source@5.8.0):
     resolution: {integrity: sha512-ucBk3oM+PR+AfYoSUXeQh8cDQS1sSiEKp4Pcgbew5cFMSqPxJfqd1zyZsfQKNTuyubeGmWxBOyMVSTvX2LeCyg==}
