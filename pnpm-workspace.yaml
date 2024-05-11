@@ -1,0 +1,3 @@
+packages:
+  - '@lan0/ember-power-time-picker'
+  - 'test-app'

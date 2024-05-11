@@ -1,39 +1,26 @@
-ember-power-time-picker
-==============================================================================
+# @lan0/ember-power-time-picker
 
-Shows a time-picker based on power-select that behaves like the time pickers
-in Google/Outlook Web calendar.
+[Short description of the addon.]
 
+## Compatibility
 
-Compatibility
-------------------------------------------------------------------------------
+- Ember.js v4.12 or above
+- Embroider or ember-auto-import v2
 
-* Ember.js v3.20 or above
-* Ember CLI v3.24 or above
-* Node.js v12 or above
-
-
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
-ember install ember-power-time-picker
+ember install @lan0/ember-power-time-picker
 ```
 
-
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 [Longer description of how to use the addon in apps.]
 
-
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
