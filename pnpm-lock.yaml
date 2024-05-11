@@ -6,7 +6,7 @@ settings:
 
 overrides:
   '@types/eslint': ^7.0.0
-  ember-raf-scheduler: 0.4.1
+  ember-raf-scheduler: github:Mikek2252/ember-raf-scheduler
 
 importers:
 
@@ -49,8 +49,8 @@ importers:
         specifier: ^7.0.0
         version: 7.2.0(@babel/core@7.24.5)(webpack@5.91.0)
       ember-raf-scheduler:
-        specifier: 0.4.1
-        version: 0.4.1(ember-source@5.8.0)
+        specifier: github:Mikek2252/ember-raf-scheduler
+        version: github.com/Mikek2252/ember-raf-scheduler/7563f279019cd5b5b3e02283711a6eaadaf14d1b(ember-source@5.8.0)
       ember-truth-helpers:
         specifier: ^4.0.3
         version: 4.0.3
@@ -203,8 +203,8 @@ importers:
         specifier: ^8.0.2
         version: 8.0.2(@ember/test-helpers@3.3.0)(ember-source@5.8.0)(qunit@2.20.1)
       ember-raf-scheduler:
-        specifier: 0.4.1
-        version: 0.4.1(ember-source@5.8.0)
+        specifier: github:Mikek2252/ember-raf-scheduler
+        version: github.com/Mikek2252/ember-raf-scheduler/7563f279019cd5b5b3e02283711a6eaadaf14d1b(ember-source@5.8.0)
       ember-resolver:
         specifier: ^11.0.1
         version: 11.0.1(ember-source@5.8.0)
@@ -2465,7 +2465,7 @@ packages:
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-cli-version-checker: 5.1.2
-      ember-raf-scheduler: 0.4.1(ember-source@5.8.0)
+      ember-raf-scheduler: github.com/Mikek2252/ember-raf-scheduler/7563f279019cd5b5b3e02283711a6eaadaf14d1b(ember-source@5.8.0)
     transitivePeerDependencies:
       - ember-source
       - supports-color
@@ -6899,17 +6899,6 @@ packages:
       - '@glint/template'
       - supports-color
     dev: true
-
-  /ember-raf-scheduler@0.4.1(ember-source@5.8.0):
-    resolution: {integrity: sha512-rVAyCgvYZnRBFRD//F3OyvR/wFYxnLhT4FWNMKbxGzIcZBT8w+yvXrp4Jsz9q1OdSGObQNwfG8+GOH0BF7FMeQ==}
-    engines: {node: 14.* || 16.* || >= 18}
-    peerDependencies:
-      ember-source: ^3.12.0
-    dependencies:
-      ember-cli-babel: 7.26.11
-      ember-source: 5.8.0(@babel/core@7.24.5)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.91.0)
-    transitivePeerDependencies:
-      - supports-color
 
   /ember-resolver@11.0.1(ember-source@5.8.0):
     resolution: {integrity: sha512-ucBk3oM+PR+AfYoSUXeQh8cDQS1sSiEKp4Pcgbew5cFMSqPxJfqd1zyZsfQKNTuyubeGmWxBOyMVSTvX2LeCyg==}
@@ -13899,3 +13888,17 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
+
+  github.com/Mikek2252/ember-raf-scheduler/7563f279019cd5b5b3e02283711a6eaadaf14d1b(ember-source@5.8.0):
+    resolution: {tarball: https://codeload.github.com/Mikek2252/ember-raf-scheduler/tar.gz/7563f279019cd5b5b3e02283711a6eaadaf14d1b}
+    id: github.com/Mikek2252/ember-raf-scheduler/7563f279019cd5b5b3e02283711a6eaadaf14d1b
+    name: ember-raf-scheduler
+    version: 0.4.1
+    engines: {node: 14.* || 16.* || >= 18}
+    peerDependencies:
+      ember-source: ^3.12.0
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-source: 5.8.0(@babel/core@7.24.5)(@glimmer/component@1.1.2)(rsvp@4.8.5)(webpack@5.91.0)
+    transitivePeerDependencies:
+      - supports-color

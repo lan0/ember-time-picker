@@ -22,7 +22,7 @@
   "pnpm": {
     "overrides": {
       "@types/eslint": "^7.0.0",
-      "ember-raf-scheduler": "0.4.1"
+      "ember-raf-scheduler": "github:Mikek2252/ember-raf-scheduler"
     }
   }
 }
